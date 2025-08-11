@@ -1,0 +1,229 @@
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  background: #0e0f12;
+  color: #f6f7fb;
+}
+
+/* スマホ枠 */
+.phone {
+  position: relative;
+  width: 390px;
+  min-height: 100dvh;
+  margin: 0 auto;
+  background: transparent; /* 背景はmainに移す */
+  padding-bottom: 48px;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(180deg,#181b23,#12141a);
+  padding: 16px 16px 8px;
+  border-bottom: 1px solid #252836;
+  z-index: 1000; /* コンテンツより前面に */
+
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+h1 .logo {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+@media (max-width: 480px) {
+  h1 .logo {
+    width: 28px;
+    height: 28px;
+  }
+  h1 {
+    font-size: 1.2rem;
+    gap: 6px;
+  }
+}
+
+/* main に背景を適用 */
+main {
+  position: relative;
+  padding: 16px;
+  background-image: url("assets/background2.jpg");
+  background-repeat: repeat-y;
+  background-size: cover;
+  background-position: top center;
+  z-index: 0;
+}
+
+/* 上側だけ background1 を適用 */
+main::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: var(--hero-h, 420px);
+  background-image: url("assets/background1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* 実コンテンツを前面に */
+header, main > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid #262a36;
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+h2 { margin: 0 0 10px; font-size: 16px; color: #e4e7f0; }
+
+label { display: block; font-size: 12px; margin-bottom: 8px; color: #b9bed1; }
+input[type="datetime-local"] {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid #2a2f3e;
+  background: #10131a;
+  color: #dfe3f1;
+  outline: none;
+}
+input[type="datetime-local"]:focus {
+  border-color: #5a7cff;
+  box-shadow: 0 0 0 3px rgba(90,124,255,0.15);
+}
+
+button {
+  width: 100%;
+  margin-top: 6px;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  background: #5a7cff;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+button:hover { filter: brightness(1.05); }
+
+.message { min-height: 20px; font-size: 12px; color: #95ffbd; }
+.muted { color: #8e94a7; }
+
+table.history { width: 100%; border-collapse: collapse; }
+table.history th, table.history td {
+  border-bottom: 1px solid #2a2f3e;
+  padding: 8px 6px;
+  font-size: 12px;
+}
+table.history th { text-align: left; color: #aab2c7; font-weight: 600; }
+.hidden { display: none; }
+
+ul.positives { padding-left: 18px; margin: 8px 0; }
+ul.positives li { margin: 6px 0; }
+
+/* グラフカードは不透過 */
+.card.chart-card {
+  background: #12141a;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.card.chart-card .chart-box {
+  background: #0f1116;
+  border-radius: 16px;
+  padding: 8px;
+}
+
+/* Good Things の本文は完全透過 */
+.positives,
+.positives li {
+  background: transparent !important;
+}
+.positives {
+  border-radius: 10px;
+}
+
+.chart-box {
+  position: relative;
+  width: 100%;
+  height: 240px;
+}
+
+@media (max-width: 420px) {
+  .chart-box { height: 200px; }
+}
+
+.points-row {
+  display: flex; align-items: center; gap: 10px; margin-top: 6px;
+}
+.redeem-btn {
+  display: inline-block;
+  padding: 8px 12px; border-radius: 10px; text-decoration: none;
+  background: #34c759; color: #0b0d12; font-weight: 800; font-size: 13px;
+}
+.redeem-btn:hover { filter: brightness(1.05); }
+
+
+.modal.hidden { display: none; }
+.modal { position: fixed; inset: 0; z-index: 50; }
+.modal .overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.5); backdrop-filter: blur(2px);
+}
+.modal .dialog {
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(92vw, 420px);
+  background: #151924; border: 1px solid #2a2f3e;
+  border-radius: 16px; padding: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+.modal .close {
+  position: absolute; right: 10px; top: 8px;
+  width: 32px; height: 32px; border-radius: 8px;
+  border: none; background: #22283a; color: #fff; cursor: pointer;
+  font-size: 18px; line-height: 32px;
+}
+.m-img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; background:#0f1116; margin: 8px 0; }
+
+body.modal-open { overflow: hidden; } /* 背景スクロール停止 */
+
+
+/* --- video overlay (on top of the modal) --- */
+.video-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;               /* modal(50) より前面 */
+  background: rgba(0,0,0,0.6);
+  display: grid;
+  place-items: center;
+}
+.video-box {
+  width: min(92vw, 480px);   /* ← いい感じのサイズ調整 */
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+  background: #000;          /* 縁のにじみ防止 */
+}
+.video-box video {
+  display: block;
+  width: 100%;
+  height: auto;
+}

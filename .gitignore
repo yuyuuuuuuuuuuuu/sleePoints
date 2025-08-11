@@ -1,0 +1,10 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+sleep.db
+
+# Node/web (念のため)
+node_modules/
+dist/
+.DS_Store

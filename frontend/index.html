@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sleepoints (MVP v3)</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="icon" href="/assets/favicon.jpg">
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="phone">
+    <header>
+    <h1>
+        <img src="/assets/favicon.jpg" alt="Logo" class="logo">
+        Sleepoints
+    </h1>
+    <div class="points-row">
+        <div id="points" class="points">—</div>
+        <a class="redeem-btn" href="/rewards.html">Redeem</a>
+    </div>
+    </header>
+
+
+    <main>
+    <section class="card chart-card">  <!-- ← chart-card を追加 -->
+    <h2>Bedtime & Wake-up (Last 10 days)</h2>
+    <div class="chart-box">
+        <canvas id="sleepChart"></canvas>
+    </div>
+    </section>
+
+
+
+
+      <section class="card">
+        <h2>Your “Good Things”</h2>
+        <ul id="mine" class="positives"></ul>
+        <div id="mine-empty" class="muted">No entries found for your email.</div>
+      </section>
+
+      <section class="card">
+        <h2>Everyone’s “Good Things”</h2>
+        <ul id="others" class="positives"></ul>
+        <div id="others-empty" class="muted">No data yet.</div>
+        <button id="reload-others" type="button">Show different picks</button>
+      </section>
+
+
+
+
+      <section class="card">
+        <p>Did you sleep well last night?</p>
+        <div style="display: flex; gap: 10px;">
+            <button type="button" onclick="location.reload()">YES</button>
+            <button type="button" onclick="location.reload()">NO</button>
+        </div>
+    </section>
+
+    </main>
+  </div>
+  <script src="./app.js"></script>
+</body>
+</html>

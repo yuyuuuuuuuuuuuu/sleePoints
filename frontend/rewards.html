@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sleepoints – Redeem</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <style>
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .prod { background:#171a22; border:1px solid #262a36; border-radius:14px; overflow:hidden; cursor: pointer; }
+    .prod img { width:100%; height:120px; object-fit:cover; display:block; background:#0f1116; }
+    .prod .meta { padding:10px; }
+    .prod .name { font-weight:700; font-size:14px; margin:0 0 4px; }
+    .prod .price { color:#aab2c7; font-size:12px; }
+    .detail { margin-top:14px; background:#151924; border:1px solid #2a2f3e; border-radius:14px; padding:12px; }
+    .detail h3 { margin:0 0 6px; font-size:16px; }
+    .row { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+    .row input[type="range"] { width:100%; }
+    .buy-btn { width:100%; padding:12px; border:none; border-radius:10px; background:#5a7cff; color:white; font-weight:800; cursor:pointer; margin-top:10px; }
+    .muted { color:#8e94a7; font-size:12px; }
+    .back { display:inline-block; margin:12px 0; color:#5a7cff; text-decoration:none; }
+    .hidden { display:none; }
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <header>
+      <h1>Redeem Rewards</h1>
+      <div class="points-row">
+        <div id="points" class="points">—</div>
+        <a class="back" href="/">← Back</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>Catalog</h2>
+        <div id="catalog" class="grid"></div>
+
+        <!-- Detail panel -->
+        <div id="detail" class="detail hidden">
+          <h3 id="d-name"></h3>
+          <img id="d-img" alt="" style="width:100%;height:160px;object-fit:cover;border-radius:10px;background:#0f1116;">
+          <p class="muted" id="d-desc"></p>
+          <div class="row">
+            <div>Price: <b id="d-price"></b> pts</div>
+            <div>Qty: <b id="d-qty">0</b></div>
+          </div>
+          <input type="range" id="qty" min="0" max="0" step="1" />
+          <button id="buy" class="buy-btn" disabled>Redeem</button>
+          <div class="muted" id="d-hint"></div>
+        </div>
+      </section>
+    </main>
+
+        <!-- Product detail modal -->
+    <div id="modal" class="modal hidden" aria-hidden="true">
+    <div class="overlay" id="modal-overlay"></div>
+
+    <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="close" id="modal-close" aria-label="Close">×</button>
+
+        <h3 id="modal-title"></h3>
+        <img id="m-img" alt="" class="m-img">
+        <p class="muted" id="m-desc"></p>
+
+        <div class="row">
+        <div>Price: <b id="m-price"></b> pts</div>
+        <div>Qty: <b id="m-qty">0</b></div>
+        </div>
+        <input type="range" id="m-slider" min="0" max="0" step="1" />
+        <button id="m-buy" class="buy-btn" disabled>Redeem</button>
+        <div class="muted" id="m-hint"></div>
+    </div>
+    </div>
+
+  </div>
+
+  <script src="./rewards.js"></script>
+</body>
+</html>
